@@ -34,3 +34,28 @@ func TestParseInputDayTwo(t *testing.T) {
 	assert.Equal(t, 2121212124, result[10].maxValue)
 
 }
+
+func TestPowInt(t *testing.T) {
+	assert.Equal(t, 1000, powInt(10, 3))
+	assert.Equal(t, 10, powInt(10, 1))
+	assert.Equal(t, 16, powInt(2, 4))
+	assert.Equal(t, 1, powInt(1, 10))
+}
+
+func TestIsIDValid(t *testing.T) {
+	assert.True(t, isIDValid(12345))
+	assert.True(t, isIDValid(123456))
+	assert.False(t, isIDValid(123123))
+	assert.False(t, isIDValid(111111))
+	assert.True(t, isIDValid(11111))
+	assert.True(t, isIDValid(3))
+	assert.False(t, isIDValid(22))
+	assert.True(t, isIDValid(100))
+	assert.False(t, isIDValid(100100))
+}
+
+func TestSolve(t *testing.T) {
+	initialInput := "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
+	ranges := parseInputDayTwo(initialInput)
+	assert.Equal(t, solve(ranges), 1227775554)
+}
