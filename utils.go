@@ -27,7 +27,10 @@ func getInputFilePaths(date Date, filesPath string) []string {
 }
 
 func getDataFromFile(inputPath string) []string {
-	f, _ := os.Open(inputPath)
+	f, err := os.Open(inputPath)
+	if err != nil {
+		panic(err)
+	}
 	scanner := bufio.NewScanner(f)
 	result := []string{}
 

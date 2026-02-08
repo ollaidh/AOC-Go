@@ -1,8 +1,7 @@
 package main
 
 import (
-	"bufio"
-	"os"
+	"fmt"
 	"strconv"
 	"strings"
 )
@@ -23,13 +22,6 @@ func parseInputDayTwo(input string) []Range {
 		end, _ := strconv.Atoi(currCurrRange[1])
 		result = append(result, Range{minValue: start, maxValue: end})
 	}
-	return result
-}
-
-func readInputDayTwo(inputPath string) string {
-	f, _ := os.Open(inputPath)
-	scanner := bufio.NewScanner(f)
-	result := scanner.Text()
 	return result
 }
 
@@ -72,5 +64,13 @@ func solve(ranges []Range) int {
 			}
 		}
 	}
+	return result
+}
+
+func solveDayTwo() int {
+	inputDayTwo := getDataFromFile("/Users/maria/Documents/Go/AOC-Go-2025/inputs/input_day_02.dat")
+	ranges := parseInputDayTwo(inputDayTwo[0])
+	result := solve(ranges)
+	fmt.Println(result)
 	return result
 }
