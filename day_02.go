@@ -42,7 +42,7 @@ func powInt(number int, power int) int {
 	return result
 }
 
-func isIDValid(id int) bool {
+func isIDValidPartOne(id int) bool {
 	digitsNumber := getDigitsNumber(id)
 	if digitsNumber%2 != 0 {
 		return true
@@ -53,6 +53,21 @@ func isIDValid(id int) bool {
 
 	return firstHalf != secondHalf
 
+}
+
+func isIDValidPartTwo(id int) bool {
+	word := strconv.Itoa(id)
+	length := len(word)
+	for i := 1; i <= length/2; i++ {
+		if length%i != 0 {
+			continue
+		}
+		perfectWord := strings.Repeat(word[0:i], length/i)
+		if perfectWord == word {
+			return false
+		}
+	}
+	return true
 }
 
 func solve(ranges []Range, check func(int) bool) int {
@@ -67,10 +82,11 @@ func solve(ranges []Range, check func(int) bool) int {
 	return result
 }
 
-func solveDayTwo() int {
+func solveDayTwo() {
 	inputDayTwo := getDataFromFile("/Users/maria/Documents/Go/AOC-Go-2025/inputs/input_day_02.dat")
 	ranges := parseInputDayTwo(inputDayTwo[0])
-	result := solve(ranges, isIDValid)
-	fmt.Println(result)
-	return result
+	result1 := solve(ranges, isIDValidPartOne)
+	fmt.Println(result1)
+	result2 := solve(ranges, isIDValidPartTwo)
+	fmt.Println(result2)
 }

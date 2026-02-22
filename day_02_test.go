@@ -42,20 +42,34 @@ func TestPowInt(t *testing.T) {
 	assert.Equal(t, 1, powInt(1, 10))
 }
 
-func TestIsIDValid(t *testing.T) {
-	assert.True(t, isIDValid(12345))
-	assert.True(t, isIDValid(123456))
-	assert.False(t, isIDValid(123123))
-	assert.False(t, isIDValid(111111))
-	assert.True(t, isIDValid(11111))
-	assert.True(t, isIDValid(3))
-	assert.False(t, isIDValid(22))
-	assert.True(t, isIDValid(100))
-	assert.False(t, isIDValid(100100))
+func TestIsIDValidPartOne(t *testing.T) {
+	assert.True(t, isIDValidPartOne(12345))
+	assert.True(t, isIDValidPartOne(123456))
+	assert.False(t, isIDValidPartOne(123123))
+	assert.False(t, isIDValidPartOne(111111))
+	assert.True(t, isIDValidPartOne(11111))
+	assert.True(t, isIDValidPartOne(3))
+	assert.False(t, isIDValidPartOne(22))
+	assert.True(t, isIDValidPartOne(100))
+	assert.False(t, isIDValidPartOne(100100))
 }
 
-func TestSolve(t *testing.T) {
+func TestIsIDValidPartTwo(t *testing.T) {
+	assert.True(t, isIDValidPartTwo(12345))
+	assert.True(t, isIDValidPartTwo(123456))
+	assert.False(t, isIDValidPartTwo(123123))
+	assert.False(t, isIDValidPartTwo(123123123))
+	assert.False(t, isIDValidPartTwo(1212121212))
+	assert.False(t, isIDValidPartTwo(111111))
+	assert.False(t, isIDValidPartTwo(11111))
+	assert.True(t, isIDValidPartTwo(3))
+	assert.False(t, isIDValidPartTwo(22))
+	assert.True(t, isIDValidPartTwo(100))
+	assert.False(t, isIDValidPartTwo(100100))
+}
+
+func TestSolvePartOne(t *testing.T) {
 	initialInput := "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
 	ranges := parseInputDayTwo(initialInput)
-	assert.Equal(t, solve(ranges), 1227775554)
+	assert.Equal(t, solve(ranges, isIDValidPartOne), 1227775554)
 }
