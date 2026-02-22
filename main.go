@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type solver interface {
 	solve([]string) string
@@ -31,8 +34,13 @@ func main() {
 
 		for _, filepath := range filePaths {
 			input := getDataFromFile(filepath)
+			start := time.Now()
 			result = callable.solve(input)
-			fmt.Printf("Year %v Day %v Part %v Path %v result: %v\n", date.year, date.day, date.part, filepath, result)
+			end := time.Now()
+			fmt.Printf("Year %v Day %v Part %v\n", date.year, date.day, date.part)
+			fmt.Printf("\tFile: %v\n", filepath)
+			fmt.Printf("\tResult: %s\n", result)
+			fmt.Printf("\tTook: %v\n", end.Sub(start))
 		}
 	}
 }
