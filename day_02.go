@@ -55,11 +55,11 @@ func isIDValid(id int) bool {
 
 }
 
-func solve(ranges []Range) int {
+func solve(ranges []Range, check func(int) bool) int {
 	result := 0
 	for i := range ranges {
 		for id := ranges[i].minValue; id <= ranges[i].maxValue; id++ {
-			if !isIDValid(id) {
+			if !check(id) {
 				result += id
 			}
 		}
@@ -70,7 +70,7 @@ func solve(ranges []Range) int {
 func solveDayTwo() int {
 	inputDayTwo := getDataFromFile("/Users/maria/Documents/Go/AOC-Go-2025/inputs/input_day_02.dat")
 	ranges := parseInputDayTwo(inputDayTwo[0])
-	result := solve(ranges)
+	result := solve(ranges, isIDValid)
 	fmt.Println(result)
 	return result
 }
