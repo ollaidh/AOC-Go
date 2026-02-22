@@ -6,19 +6,18 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	"strconv"
 )
 
 func getInputsFolderPath() (string, error) {
-	inputsFolderRootPath := os.Getenv("INPUTS_FOLDER")
+	inputsFolderRootPath := os.Getenv("AOC_INPUTS_FOLDER")
 	if inputsFolderRootPath == "" {
-		return "", errors.New("No INPUTS_FOLDER environment variable is found!")
+		return "", errors.New("No AOC_INPUTS_FOLDER environment variable is found!")
 	}
 	return inputsFolderRootPath, nil
 }
 
 func getInputFilePaths(date Date, filesPath string) []string {
-	fileName := fmt.Sprintf("input_day_%s_part_%s.dat", strconv.Itoa(date.day), strconv.Itoa(date.part))
+	fileName := fmt.Sprintf("input_day_%02d.txt", date.day)
 	fileNames := []string{fileName}
 	for i := range fileNames {
 		fileNames[i] = filepath.Join(filesPath, fileNames[i])

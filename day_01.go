@@ -34,13 +34,13 @@ func (day Day1Part1) solve(input []string) string {
 
 type Day1Part2 struct{}
 
-func (day Day1Part2) solve(input []string) (string, error) {
+func (day Day1Part2) solve(input []string) string {
 	actions, err := getInputDay1(input)
 	if err != nil {
-		return "", err
+		panic(err)
 	}
 	resultPart2 := rotateCountAllZeroes(50, actions)
-	return strconv.Itoa(resultPart2), nil
+	return strconv.Itoa(resultPart2)
 
 }
 
