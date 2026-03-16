@@ -1,12 +1,25 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
 
 type Day2Part1 struct{}
+
+func (day Day2Part1) solve(input []string) string {
+	ranges := parseInputDayTwo(input[0])
+	result := solve(ranges, isIDValidPartOne)
+	return strconv.Itoa(result)
+}
+
+type Day2Part2 struct{}
+
+func (day Day2Part2) solve(input []string) string {
+	ranges := parseInputDayTwo(input[0])
+	result := solve(ranges, isIDValidPartTwo)
+	return strconv.Itoa(result)
+}
 
 type Range struct {
 	minValue int
@@ -80,13 +93,4 @@ func solve(ranges []Range, check func(int) bool) int {
 		}
 	}
 	return result
-}
-
-func solveDayTwo() {
-	inputDayTwo := getDataFromFile("/Users/maria/Documents/Go/AOC-Go-2025/inputs/input_day_02.dat")
-	ranges := parseInputDayTwo(inputDayTwo[0])
-	result1 := solve(ranges, isIDValidPartOne)
-	fmt.Println(result1)
-	result2 := solve(ranges, isIDValidPartTwo)
-	fmt.Println(result2)
 }

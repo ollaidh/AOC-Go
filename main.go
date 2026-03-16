@@ -21,6 +21,8 @@ func main() {
 	tasks := map[Date]solver{
 		{year: 2025, day: 1, part: 1}: Day1Part1{},
 		{year: 2025, day: 1, part: 2}: Day1Part2{},
+		{year: 2025, day: 2, part: 1}: Day2Part1{},
+		{year: 2025, day: 2, part: 2}: Day2Part2{},
 	}
 	var result string
 
