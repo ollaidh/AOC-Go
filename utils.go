@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
 )
 
 func getInputsFolderPath() (string, error) {
@@ -16,11 +17,11 @@ func getInputsFolderPath() (string, error) {
 	return inputsFolderRootPath, nil
 }
 
-func getInputFilePaths(date Date, filesPath string) []string {
+func getInputFilePaths(date Date, inputRootPath string) []string {
 	fileName := fmt.Sprintf("input_day_%02d.txt", date.day)
-	fileNames := []string{fileName}
+	fileNames := []string{fileName} // TODO no glob so far - ADD!
 	for i := range fileNames {
-		fileNames[i] = filepath.Join(filesPath, fileNames[i])
+		fileNames[i] = filepath.Join(inputRootPath, strconv.Itoa(date.year), fileNames[i])
 	}
 	return fileNames
 }
