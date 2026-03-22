@@ -1,4 +1,4 @@
-package main
+package year2025
 
 import (
 	"strconv"
@@ -7,17 +7,17 @@ import (
 
 type Day2Part1 struct{}
 
-func (day Day2Part1) solve(input []string) string {
+func (day Day2Part1) Solve(input []string) string {
 	ranges := parseInputDayTwo(input[0])
-	result := solve(ranges, isIDValidPartOne)
+	result := Solve(ranges, isIDValidPartOne)
 	return strconv.Itoa(result)
 }
 
 type Day2Part2 struct{}
 
-func (day Day2Part2) solve(input []string) string {
+func (day Day2Part2) Solve(input []string) string {
 	ranges := parseInputDayTwo(input[0])
-	result := solve(ranges, isIDValidPartTwo)
+	result := Solve(ranges, isIDValidPartTwo)
 	return strconv.Itoa(result)
 }
 
@@ -83,7 +83,7 @@ func isIDValidPartTwo(id int) bool {
 	return true
 }
 
-func solve(ranges []Range, check func(int) bool) int {
+func Solve(ranges []Range, check func(int) bool) int {
 	result := 0
 	for i := range ranges {
 		for id := ranges[i].minValue; id <= ranges[i].maxValue; id++ {

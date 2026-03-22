@@ -1,4 +1,4 @@
-package main
+package year2025
 
 import (
 	"os"
@@ -22,7 +22,7 @@ func getInputDay1(input []string) ([]int, error) {
 	return result, nil
 }
 
-func (day Day1Part1) solve(input []string) string {
+func (day Day1Part1) Solve(input []string) string {
 	actions, err := getInputDay1(input)
 	if err != nil {
 		panic(err)
@@ -34,7 +34,7 @@ func (day Day1Part1) solve(input []string) string {
 
 type Day1Part2 struct{}
 
-func (day Day1Part2) solve(input []string) string {
+func (day Day1Part2) Solve(input []string) string {
 	actions, err := getInputDay1(input)
 	if err != nil {
 		panic(err)

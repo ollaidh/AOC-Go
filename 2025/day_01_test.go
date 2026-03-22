@@ -1,4 +1,4 @@
-package main
+package year2025
 
 import (
 	"testing"
@@ -49,13 +49,13 @@ func TestStepZeroesCount(t *testing.T) {
 func TestDay1Part1(t *testing.T) {
 	actions := []string{"L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"}
 	day := Day1Part1{}
-	result := day.solve(actions)
+	result := day.Solve(actions)
 	assert.Equal(t, "3", result)
 }
 
 func TestDay2Part2(t *testing.T) {
 	// actions := []string{"L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"}
 	// day := Day1Part2{}
-	// result := day.solve(actions)
+	// result := day.Solve(actions)
 	// assert.Equal(t, "6", result)
 }

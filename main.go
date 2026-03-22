@@ -1,12 +1,13 @@
 package main
 
 import (
+	year2025 "day_01/2025"
 	"fmt"
 	"time"
 )
 
-type solver interface {
-	solve([]string) string
+type Solver interface {
+	Solve([]string) string
 }
 
 type Date struct {
@@ -15,14 +16,12 @@ type Date struct {
 	part int
 }
 
-// TODO add iteratinf over all versions of input for this day
-
 func main() {
-	tasks := map[Date]solver{
-		{year: 2025, day: 1, part: 1}: Day1Part1{},
-		{year: 2025, day: 1, part: 2}: Day1Part2{},
-		{year: 2025, day: 2, part: 1}: Day2Part1{},
-		{year: 2025, day: 2, part: 2}: Day2Part2{},
+	tasks := map[Date]Solver{
+		{year: 2025, day: 1, part: 1}: year2025.Day1Part1{},
+		{year: 2025, day: 1, part: 2}: year2025.Day1Part2{},
+		{year: 2025, day: 2, part: 1}: year2025.Day2Part1{},
+		{year: 2025, day: 2, part: 2}: year2025.Day2Part2{},
 	}
 	var result string
 
@@ -37,7 +36,7 @@ func main() {
 		for _, filepath := range filePaths {
 			input := getDataFromFile(filepath)
 			start := time.Now()
-			result = callable.solve(input)
+			result = callable.Solve(input)
 			end := time.Now()
 			fmt.Printf("Year %v Day %v Part %v\n", date.year, date.day, date.part)
 			fmt.Printf("\tFile: %v\n", filepath)
