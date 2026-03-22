@@ -1,7 +1,7 @@
 package main
 
 import (
-	year2025 "day_01/2025"
+	year2025 "aoc/2025"
 	"fmt"
 	"time"
 )
