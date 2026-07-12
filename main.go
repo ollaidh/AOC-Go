@@ -23,6 +23,7 @@ func main() {
 		{year: 2025, day: 2, part: 1}: year2025.Day2Part1{},
 		{year: 2025, day: 2, part: 2}: year2025.Day2Part2{},
 		{year: 2025, day: 3, part: 1}: year2025.Day3Part1{},
+		{year: 2025, day: 3, part: 2}: year2025.Day3Part2{},
 	}
 	var result string
 

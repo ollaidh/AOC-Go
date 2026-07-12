@@ -7,25 +7,45 @@ type Day3Part1 struct{}
 func (day Day3Part1) Solve(input []string) string {
 	sum := 0
 	for _, line := range input {
-		sum += getMaxNumberFromLine(line)
+		sum += getMaxNumberFromLine(line, 2)
 	}
 	return strconv.Itoa(sum)
 }
 
-func getMaxNumberFromLine(line string) int {
-	var firstMaxLetter byte
-	firstMaxLetterIdx := 0
-	for i := 0; i < len(line)-1; i++ {
-		if line[i] > firstMaxLetter {
-			firstMaxLetter = line[i]
-			firstMaxLetterIdx = i
+type Day3Part2 struct{}
+
+func (day Day3Part2) Solve(input []string) string {
+	sum := 0
+	for _, line := range input {
+		sum += getMaxNumberFromLine(line, 12)
+	}
+	return strconv.Itoa(sum)
+}
+
+func getMaxDigit(start int, end int, line string) (int, int) {
+	var maxLetter byte
+	maxLetterIdx := 0
+
+	for i := start; i <= end; i++ {
+		if line[i] > maxLetter {
+			maxLetter = line[i]
+			maxLetterIdx = i
 		}
 	}
-	secondMaxLetter := line[firstMaxLetterIdx+1]
-	for j := firstMaxLetterIdx + 1; j < len(line); j++ {
-		if line[j] > secondMaxLetter {
-			secondMaxLetter = line[j]
-		}
+	return maxLetterIdx, int(maxLetter - '0')
+}
+
+func getMaxNumberFromLine(line string, digitCount int) int {
+	result := 0
+
+	start := 0
+	end := len(line) - digitCount
+	for i := 0; i < digitCount; i++ {
+		idx, val := getMaxDigit(start, end, line)
+		result = result*10 + val
+		start = idx + 1
+		end += 1
 	}
-	return int(firstMaxLetter-'0')*10 + int(secondMaxLetter-'0')
+
+	return result
 }
