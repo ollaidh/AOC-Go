@@ -13,7 +13,18 @@ func (day Day1Part1) Solve(input []string) string {
 	if err != nil {
 		panic(err)
 	}
-	result := solve(formattedInput)
+	result := solvePart1(formattedInput)
+	return strconv.Itoa(result)
+}
+
+type Day1Part2 struct{}
+
+func (day Day1Part2) Solve(input []string) string {
+	formattedInput, err := reformatInput(input)
+	if err != nil {
+		panic(err)
+	}
+	result := solvePart2(formattedInput)
 	return strconv.Itoa(result)
 }
 
@@ -51,7 +62,7 @@ func abs(x int) int {
 	return x
 }
 
-func solve(input Day1Input) int {
+func solvePart1(input Day1Input) int {
 	sort.Ints(input.Lefties)
 	sort.Ints(input.Righties)
 
@@ -59,6 +70,27 @@ func solve(input Day1Input) int {
 
 	for i := 0; i < len(input.Lefties); i++ {
 		result += abs(input.Lefties[i] - input.Righties[i])
+	}
+
+	return result
+}
+
+func solvePart2(input Day1Input) int {
+	freqs := make(map[int]int)
+	for _, val := range input.Righties {
+		if _, ok := freqs[val]; !ok {
+			freqs[val] = 0
+		}
+		freqs[val] += 1
+	}
+
+	result := 0
+
+	for _, val := range input.Lefties {
+		if _, ok := freqs[val]; !ok {
+			freqs[val] = 0
+		}
+		result += val * freqs[val]
 	}
 
 	return result
