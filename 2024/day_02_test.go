@@ -27,3 +27,23 @@ func TestReformatInputDay2(t *testing.T) {
 	result, err = reformatInputDay2("anc6 4 213 1")
 	assert.NotNil(t, err)
 }
+
+func TestIsLevelSafe(t *testing.T) {
+	result := isReportSafe([]int{7, 6, 4, 2, 1})
+	assert.True(t, result)
+
+	result = isReportSafe([]int{1, 2, 7, 8, 9})
+	assert.False(t, result)
+
+	result = isReportSafe([]int{19, 7, 6, 2, 1})
+	assert.False(t, result)
+
+	result = isReportSafe([]int{1, 3, 2, 4, 5})
+	assert.False(t, result)
+
+	result = isReportSafe([]int{8, 6, 4, 4, 1})
+	assert.False(t, result)
+
+	result = isReportSafe([]int{1, 3, 6, 7, 9})
+	assert.True(t, result)
+}
