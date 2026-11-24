@@ -22,6 +22,7 @@ func main() {
 		{year: 2024, day: 1, part: 1}: year2024.Day1Part1{},
 		{year: 2024, day: 1, part: 2}: year2024.Day1Part2{},
 		{year: 2024, day: 2, part: 1}: year2024.Day2Part1{},
+		{year: 2024, day: 2, part: 2}: year2024.Day2Part2{},
 		{year: 2025, day: 1, part: 1}: year2025.Day1Part1{},
 		{year: 2025, day: 1, part: 2}: year2025.Day1Part2{},
 		{year: 2025, day: 2, part: 1}: year2025.Day2Part1{},

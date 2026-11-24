@@ -28,22 +28,72 @@ func TestReformatInputDay2(t *testing.T) {
 	assert.NotNil(t, err)
 }
 
-func TestIsLevelSafe(t *testing.T) {
-	result := isReportSafe([]int{7, 6, 4, 2, 1})
+func TestGetCorruptedInd(t *testing.T) {
+	result, hasCorruptedInd := getCorruptedIds([]int{7, 6, 4, 2, 1})
+	assert.False(t, hasCorruptedInd)
+	assert.Equal(t, []int{}, result)
+
+	result, hasCorruptedInd = getCorruptedIds([]int{1, 2, 7, 8, 9})
+	assert.True(t, hasCorruptedInd)
+	assert.Equal(t, []int{1, 2}, result)
+
+	result, hasCorruptedInd = getCorruptedIds([]int{19, 7, 6, 2, 1})
+	assert.True(t, hasCorruptedInd)
+	assert.Equal(t, []int{0, 1}, result)
+
+	result, hasCorruptedInd = getCorruptedIds([]int{19, 7, 18, 16, 15})
+	assert.True(t, hasCorruptedInd)
+	assert.Equal(t, []int{0, 1}, result)
+
+	result, hasCorruptedInd = getCorruptedIds([]int{1, 3, 2, 4, 5})
+	assert.True(t, hasCorruptedInd)
+	assert.Equal(t, []int{0, 1, 2}, result)
+
+	result, hasCorruptedInd = getCorruptedIds([]int{8, 6, 4, 4, 1})
+	assert.True(t, hasCorruptedInd)
+	assert.Equal(t, []int{2, 3}, result)
+
+	result, hasCorruptedInd = getCorruptedIds([]int{1, 3, 6, 7, 9})
+	assert.False(t, hasCorruptedInd)
+	assert.Equal(t, []int{}, result)
+}
+
+func TestRemoveElement(t *testing.T) {
+	result := removeElement([]int{7, 6, 4, 2, 1}, 1)
+	assert.Equal(t, []int{7, 4, 2, 1}, result)
+
+	result = removeElement([]int{7, 6, 4, 2, 1}, 0)
+	assert.Equal(t, []int{6, 4, 2, 1}, result)
+
+	result = removeElement([]int{7, 6, 4, 2, 1}, 4)
+	assert.Equal(t, []int{7, 6, 4, 2}, result)
+}
+
+func TestIsDampenedReportSafe(t *testing.T) {
+	result := isDampenedReportSafe([]int{7, 6, 4, 2, 1})
 	assert.True(t, result)
 
-	result = isReportSafe([]int{1, 2, 7, 8, 9})
+	result = isDampenedReportSafe([]int{1, 2, 7, 8, 9})
 	assert.False(t, result)
 
-	result = isReportSafe([]int{19, 7, 6, 2, 1})
+	result = isDampenedReportSafe([]int{19, 7, 6, 2, 1})
 	assert.False(t, result)
 
-	result = isReportSafe([]int{1, 3, 2, 4, 5})
+	result = isDampenedReportSafe([]int{19, 7, 6, 4, 3})
+	assert.True(t, result)
+
+	result = isDampenedReportSafe([]int{19, 7, 18, 16, 15})
+	assert.True(t, result)
+
+	result = isDampenedReportSafe([]int{1, 3, 2, 4, 5})
+	assert.True(t, result)
+
+	result = isDampenedReportSafe([]int{8, 6, 4, 4, 1})
+	assert.True(t, result)
+
+	result = isDampenedReportSafe([]int{8, 6, 4, 4, 4})
 	assert.False(t, result)
 
-	result = isReportSafe([]int{8, 6, 4, 4, 1})
-	assert.False(t, result)
-
-	result = isReportSafe([]int{1, 3, 6, 7, 9})
+	result = isDampenedReportSafe([]int{1, 3, 6, 7, 9})
 	assert.True(t, result)
 }
